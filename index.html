@@ -1,0 +1,894 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Regal Exposures | Photos by RAM</title>
+    <!-- Bootstrap CSS -->
+    <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css"
+        rel="stylesheet"
+    />
+    <!-- Font Awesome for icons -->
+    <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        rel="stylesheet"
+    />
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=Poppins:wght@300;400;500&family=Cinzel:wght@400;500;600&display=swap"
+        rel="stylesheet"
+    />
+    <!-- AOS Animation Library -->
+    <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
+        rel="stylesheet"
+    />
+    <style>
+        /* ===== CSS Variables ===== */
+        :root {
+        --primary-color: #1a1a1a;
+        --accent-color: #c9a57c; /* Changed accent color to golden yellow */
+        --light-text: #f8f9fa;
+        }
+
+        /* ===== Global Styles ===== */
+        body {
+        font-family: "Poppins", sans-serif;
+        background-color: #fff;
+        margin: 0;
+        padding: 0;
+        }
+
+        h1, h2, h3, h4 {
+        font-family: "Playfair Display", serif;
+        }
+
+        .section-title {
+        text-align: center;
+        margin: 4rem 0 2rem;
+        }
+
+        /* ===== NAVBAR STYLES ===== */
+        .navbar {
+        background-color: var(--primary-color) !important;
+        transition: all 0.3s ease;
+        padding: 15px 0;
+        border-bottom: 1px solid rgba(201, 165, 124, 0.3);
+        }
+
+        .navbar-brand {
+        font-family: 'Cinzel', serif;
+        font-weight: 600;
+        color: var(--accent-color) !important;
+        font-size: 1.8rem;
+        letter-spacing: 1px;
+        transition: all 0.3s ease;
+        }
+
+        .navbar-brand:hover {
+        transform: scale(1.02);
+        }
+        
+        .brand-tagline {
+        display: block;
+        font-family: 'Poppins', sans-serif;
+        font-size: 0.7rem;
+        font-weight: 300;
+        color: var(--light-text);
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-top: -5px;
+        }
+
+        .nav-link {
+        color: var(--light-text) !important;
+        position: relative;
+        font-weight: 400;
+        margin: 0 1rem;
+        padding: 0.5rem 0;
+        transition: color 0.3s ease;
+        font-size: 0.9rem;
+        letter-spacing: 0.5px;
+        }
+
+        .nav-link::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 0;
+        height: 2px;
+        background-color: var(--accent-color); /* Changed to golden yellow */
+        transition: width 0.3s ease;
+        }
+
+        .nav-link:hover {
+        color: var(--accent-color) !important;
+        }
+
+        .nav-link:hover::after {
+        width: 100%;
+        }
+
+        .nav-contact-icons {
+        display: flex;
+        align-items: center;
+        }
+
+        .nav-contact-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background-color: rgba(201, 165, 124, 0.1);
+        color: var(--light-text);
+        margin-left: 10px;
+        transition: all 0.3s ease;
+        }
+
+        .nav-contact-icon:hover {
+        background-color: var(--accent-color);
+        color: var(--light-text);
+        transform: translateY(-3px);
+        }
+
+        /* ===== HERO SECTION STYLES ===== */
+        .hero {
+        position: relative;
+        height: 100vh;
+        overflow: hidden;
+        }
+
+        .hero-slider {
+        position: relative;
+        height: 100%;
+        }
+
+        .hero-slider .slide {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        opacity: 0;
+        transition: opacity 1s ease;
+        }
+
+        .hero-slider .slide.active {
+        opacity: 1;
+        }
+
+        .hero-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(26, 26, 26, 0.5); /* using primary color with transparency */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 0 15px;
+        }
+
+        .hero-overlay h1 {
+        font-size: 3rem;
+        color: var(--light-text);
+        margin-bottom: 1rem;
+        }
+
+        .hero-overlay p {
+        font-size: 1.25rem;
+        color: var(--light-text);
+        }
+
+        .hero-indicators {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 10px;
+        }
+
+        .hero-indicators .slide-indicator {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: var(--light-text);
+        opacity: 0.5;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        }
+
+        .hero-indicators .slide-indicator.active {
+        opacity: 1;
+        background: var(--accent-color); /* Changed to golden yellow */
+        }
+
+        /* ===== GALLERY SECTION STYLES ===== */
+        .gallery {
+        padding: 5rem 0;
+        }
+        
+        .section-title h2 {
+        position: relative;
+        display: inline-block;
+        padding-bottom: 15px;
+        }
+        
+        .section-title h2:after {
+        content: '';
+        position: absolute;
+        width: 80px;
+        height: 3px;
+        background-color: var(--accent-color); /* Changed to golden yellow */
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        }
+        
+        /* Gallery masonry layout */
+        .gallery-container {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        grid-auto-rows: minmax(100px, auto);
+        grid-gap: 15px;
+        padding: 15px;
+        }
+        
+        .gallery-item {
+        position: relative;
+        overflow: hidden;
+        border-radius: 12px;
+        box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+        transition: all 0.4s ease;
+        }
+        
+        .gallery-item:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        
+        /* Different size gallery items */
+        .gallery-item.large {
+        grid-column: span 6;
+        grid-row: span 2;
+        }
+        
+        .gallery-item.wide {
+        grid-column: span 8;
+        }
+        
+        .gallery-item.tall {
+        grid-column: span 4;
+        grid-row: span 2;
+        }
+        
+        .gallery-item.medium {
+        grid-column: span 4;
+        }
+        
+        .gallery-item.small {
+        grid-column: span 3;
+        }
+        
+        .gallery-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover .gallery-img {
+        transform: scale(1.1);
+        }
+        
+        .gallery-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(26, 26, 26, 0.7);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: all 0.3s ease;
+        border-radius: 12px;
+        }
+        
+        .gallery-item:hover .gallery-overlay {
+        opacity: 1;
+        }
+        
+        .gallery-overlay h4 {
+        color: var(--light-text);
+        font-size: 1.3rem;
+        transform: translateY(20px);
+        opacity: 0;
+        transition: all 0.3s ease 0.1s;
+        text-align: center;
+        padding: 0 15px;
+        }
+        
+        .gallery-item:hover .gallery-overlay h4 {
+        transform: translateY(0);
+        opacity: 1;
+        }
+
+        /* ===== ABOUT SECTION STYLES ===== */
+        .about {
+        padding: 5rem 0;
+        background-color: var(--primary-color);
+        color: var(--light-text);
+        }
+        
+        .about .section-title h2 {
+        color: var(--light-text);
+        }
+        
+        .about-img {
+        position: relative;
+        margin-bottom: 2rem;
+        }
+        
+        .about-img img {
+        border-radius: 12px;
+        box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+        
+        .about-img:after {
+        content: '';
+        position: absolute;
+        width: 90%;
+        height: 90%;
+        border: 3px solid var(--accent-color); /* Already golden yellow */
+        top: 20px;
+        left: 20px;
+        border-radius: 12px;
+        z-index: -1;
+        }
+        
+        .about-text h3 {
+        margin-bottom: 1.5rem;
+        font-size: 2rem;
+        position: relative;
+        display: inline-block;
+        padding-bottom: 10px;
+        }
+        
+        .about-text h3:after {
+        content: '';
+        position: absolute;
+        width: 60px;
+        height: 3px;
+        background-color: var(--accent-color); /* Changed to golden yellow */
+        bottom: 0;
+        left: 0;
+        }
+        
+        .about-text p {
+        margin-bottom: 1.5rem;
+        line-height: 1.8;
+        }
+        
+        .btn-custom {
+        background-color: var(--accent-color); /* Changed to golden yellow */
+        color: var(--primary-color); /* Changed to dark color for better contrast */
+        padding: 0.8rem 2rem;
+        border-radius: 50px;
+        border: none;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        display: inline-block;
+        text-decoration: none;
+        }
+        
+        .btn-custom:hover {
+        background-color: #d5b994; /* Lighter shade of golden yellow */
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        color: var(--primary-color);
+        }
+
+        /* ===== FOOTER STYLES ===== */
+        footer {
+        background-color: var(--primary-color);
+        color: var(--light-text);
+        padding: 4rem 0 2rem;
+        }
+
+        .footer-content {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 2rem;
+        }
+
+        .footer-section {
+        flex: 1;
+        min-width: 200px;
+        margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+        margin-bottom: 1.5rem;
+        font-size: 1.3rem;
+        position: relative;
+        display: inline-block;
+        padding-bottom: 10px;
+        }
+
+        .footer-section h4:after {
+        content: "";
+        position: absolute;
+        width: 40px;
+        height: 2px;
+        background-color: var(--accent-color); /* Changed to golden yellow */
+        bottom: 0;
+        left: 0;
+        }
+
+        .footer-section p,
+        .footer-section a {
+        color: var(--light-text);
+        margin-bottom: 0.8rem;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        }
+
+        .footer-section a:hover {
+        color: var(--accent-color); /* Changed to golden yellow */
+        }
+
+        .footer-social {
+        margin-top: 1.5rem;
+        }
+
+        .footer-social a {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.1);
+        margin-right: 1rem;
+        color: var(--light-text);
+        font-size: 1.3rem;
+        transition: all 0.3s ease;
+        }
+
+        .footer-social a:hover {
+        color: var(--primary-color);
+        background-color: var(--accent-color); /* Changed to golden yellow */
+        transform: translateY(-3px);
+        }
+
+        .enquiry-button {
+        display: inline-block;
+        margin-top: 1.5rem;
+        background-color: var(--accent-color); /* Changed to golden yellow */
+        color: var(--primary-color); /* Changed to dark color for better contrast */
+        padding: 0.7rem 2rem;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        letter-spacing: 0.5px;
+        }
+
+        .enquiry-button:hover {
+        background-color: #d5b994; /* Lighter shade of golden yellow */
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        color: var(--primary-color);
+        }
+
+        .enquiry-button i {
+        margin-right: 8px;
+        }
+
+        .footer-bottom {
+        text-align: center;
+        padding-top: 2rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        margin-top: 2rem;
+        }
+
+        .footer-bottom p {
+        margin: 0;
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.7);
+        }
+        
+        /* ===== RESPONSIVE STYLES ===== */
+        @media (max-width: 992px) {
+        .hero-overlay h1 {
+            font-size: 2.5rem;
+        }
+        
+        .about-img:after {
+            display: none;
+        }
+        
+        .gallery-container {
+            grid-template-columns: repeat(6, 1fr);
+        }
+        
+        .gallery-item.large, .gallery-item.wide {
+            grid-column: span 6;
+        }
+        
+        .gallery-item.tall, .gallery-item.medium {
+            grid-column: span 3;
+        }
+        
+        .gallery-item.small {
+            grid-column: span 2;
+        }
+        
+        .navbar-brand {
+            font-size: 1.5rem;
+        }
+        }
+        
+        @media (max-width: 768px) {
+        .hero-overlay h1 {
+            font-size: 2rem;
+        }
+        
+        .hero-overlay p {
+            font-size: 1rem;
+        }
+        
+        .section-title {
+            margin: 3rem 0 1.5rem;
+        }
+        
+        .about-text h3 {
+            font-size: 1.7rem;
+        }
+        
+        .gallery-container {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        
+        .gallery-item.large, .gallery-item.wide, .gallery-item.tall, .gallery-item.medium {
+            grid-column: span 2;
+            grid-row: span 1;
+        }
+        
+        .gallery-item.small {
+            grid-column: span 1;
+        }
+        
+        .nav-contact-icons {
+            margin-top: 1rem;
+        }
+        
+        .nav-contact-icon {
+            margin-left: 0;
+            margin-right: 10px;
+        }
+        }
+        
+        @media (max-width: 576px) {
+        .gallery-container {
+            grid-template-columns: 1fr;
+        }
+        
+        .gallery-item {
+            grid-column: span 1 !important;
+        }
+        
+        .navbar-brand {
+            font-size: 1.3rem;
+        }
+        }
+    </style>
+    </head>
+    <body>
+    <!-- Redesigned Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+        <a class="navbar-brand" href="#home">
+            Regal Exposures
+            <span class="brand-tagline">Photos by RAM</span>
+        </a>
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+        >
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto align-items-center">
+            <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
+            <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+            <li class="nav-item nav-contact-icons">
+                <a href="https://instagram.com/regalexposures" target="_blank" class="nav-contact-icon">
+                <i class="fab fa-instagram"></i>
+                </a>
+                <a href="mailto:regalexposures@gmail.com" class="nav-contact-icon">
+                <i class="fas fa-envelope"></i>
+                </a>
+            </li>
+            </ul>
+        </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section with 3 Auto Slider Images -->
+    <section id="home" class="hero">
+        <div class="hero-slider">
+        <div
+            class="slide active"
+            style="background-image: url('/api/placeholder/1920/1080');"
+        >
+            <div class="hero-overlay">
+            <div class="container">
+                <h1>Welcome to Regal Exposures</h1>
+                <p>Capturing nature's beauty since 2012</p>
+            </div>
+            </div>
+        </div>
+        <div
+            class="slide"
+            style="background-image: url('/api/placeholder/1920/1080');"
+        >
+            <div class="hero-overlay">
+            <div class="container">
+                <h1>Experience the Art of Photography</h1>
+                <p>Every moment captured with precision and passion</p>
+            </div>
+            </div>
+        </div>
+        <div
+            class="slide"
+            style="background-image: url('/api/placeholder/1920/1080');"
+        >
+            <div class="hero-overlay">
+            <div class="container">
+                <h1>Explore the World Through Our Lens</h1>
+                <p>Discover breathtaking landscapes and vibrant cultures</p>
+            </div>
+            </div>
+        </div>
+        </div>
+        <div class="hero-indicators">
+        <span class="slide-indicator active" data-slide="0"></span>
+        <span class="slide-indicator" data-slide="1"></span>
+        <span class="slide-indicator" data-slide="2"></span>
+        </div>
+    </section>
+
+    <!-- Gallery Section with Variable Sizes -->
+    <section id="gallery" class="gallery">
+        <div class="container">
+        <div class="section-title">
+            <h2>Gallery</h2>
+        </div>
+        
+        <div class="gallery-container">
+            <!-- Large landscape item -->
+            <div class="gallery-item large" data-aos="fade-up" data-aos-duration="600">
+            <img src="/api/placeholder/800/600" alt="Mountain Range Panorama" class="gallery-img">
+            <div class="gallery-overlay">
+                <h4>Mountain Vista</h4>
+            </div>
+            </div>
+            
+            <!-- Tall portrait item -->
+            <div class="gallery-item tall" data-aos="fade-up" data-aos-duration="600" data-aos-delay="200">
+            <img src="/api/placeholder/400/800" alt="Tall Forest" class="gallery-img">
+            <div class="gallery-overlay">
+                <h4>Ancient Redwoods</h4>
+            </div>
+            </div>
+            
+            <!-- Medium item -->
+            <div class="gallery-item medium" data-aos="fade-up" data-aos-duration="600" data-aos-delay="300">
+            <img src="/api/placeholder/400/300" alt="Desert Scene" class="gallery-img">
+            <div class="gallery-overlay">
+                <h4>Desert Dawn</h4>
+            </div>
+            </div>
+            
+            <!-- Small item -->
+            <div class="gallery-item small" data-aos="fade-up" data-aos-duration="600" data-aos-delay="400">
+            <img src="/api/placeholder/300/300" alt="Small Detail" class="gallery-img">
+            <div class="gallery-overlay">
+                <h4>Water Droplet</h4>
+            </div>
+            </div>
+            
+            <!-- Small item -->
+            <div class="gallery-item small" data-aos="fade-up" data-aos-duration="600" data-aos-delay="500">
+            <img src="/api/placeholder/300/300" alt="Mountain Detail" class="gallery-img">
+            <div class="gallery-overlay">
+                <h4>Rocky Peak</h4>
+            </div>
+            </div>
+            
+            <!-- Wide landscape item -->
+            <div class="gallery-item wide" data-aos="fade-up" data-aos-duration="600" data-aos-delay="200">
+            <img src="/api/placeholder/1200/400" alt="Coastal Panorama" class="gallery-img">
+            <div class="gallery-overlay">
+                <h4>Coastal Sunset</h4>
+            </div>
+            </div>
+            
+            <!-- Medium item -->
+            <div class="gallery-item medium" data-aos="fade-up" data-aos-duration="600" data-aos-delay="300">
+            <img src="/api/placeholder/400/300" alt="Waterfall" class="gallery-img">
+            <div class="gallery-overlay">
+                <h4>Hidden Falls</h4>
+            </div>
+            </div>
+            
+            <!-- Tall portrait item -->
+            <div class="gallery-item tall" data-aos="fade-up" data-aos-duration="600" data-aos-delay="400">
+            <img src="/api/placeholder/400/800" alt="Tall Waterfall" class="gallery-img">
+            <div class="gallery-overlay">
+                <h4>Cascading Waters</h4>
+            </div>
+            </div>
+            
+            <!-- Medium item -->
+            <div class="gallery-item medium" data-aos="fade-up" data-aos-duration="600" data-aos-delay="500">
+            <img src="/api/placeholder/400/300" alt="Lake Scene" class="gallery-img">
+            <div class="gallery-overlay">
+                <h4>Alpine Lake</h4>
+            </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+        <div class="section-title">
+            <h2>About Us</h2>
+        </div>
+
+        <div class="row align-items-center">
+            <div class="col-lg-5" data-aos="fade-right" data-aos-duration="1000">
+            <div class="about-img">
+                <img src="/api/placeholder/600/400" alt="Photographer at work" class="img-fluid" />
+            </div>
+            </div>
+
+            <div class="col-lg-7" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+            <div class="about-text">
+                <h3>Our Story</h3>
+                <p>
+                Welcome to Regal Exposures, where every landscape is captured with passion and artistic vision. With over a decade of experience in landscape photography, we've traveled across diverse terrains to bring you captivating imagery that celebrates the beauty of our natural world.
+                </p>
+                <p>
+                Founded by RAM (Robert Alan Mitchell), Regal Exposures has built a reputation for creating stunning landscape photographs that evoke emotion and transport viewers to these magnificent locations. Our mission is to showcase nature's grandeur through a unique artistic perspective.
+                </p>
+                <p>
+                Each photograph is meticulously crafted with attention to composition, lighting, and timing, ensuring that the final image captures not just the visual splendor, but the essence and spirit of each location.
+                </p>
+                <a href="mailto:regalexposures@gmail.com" class="btn-custom">Get in Touch</a>
+            </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <!-- Footer with Enquire Now Button -->
+    <footer id="contact">
+        <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+            <h4>Regal Exposures</h4>
+            <p>Photos by RAM</p>
+            <p>Capturing nature's beauty since 2012</p>
+            <div class="footer-social">
+                <a href="https://instagram.com/regalexposures" target="_blank" title="Instagram">
+                <i class="fab fa-instagram"></i>
+                </a>
+                <a href="mailto:regalexposures@gmail.com" title="Email">
+                <i class="fas fa-envelope"></i>
+                </a>
+            </div>
+            </div>
+
+            <div class="footer-section">
+            <h4>Quick Links</h4>
+            <a href="#home">Home</a><br />
+            <a href="#gallery">Gallery</a><br />
+            <a href="#about">About</a><br />
+            <a href="#contact">Contact</a>
+            </div>
+
+            <div class="footer-section">
+            <h4>Contact Us</h4>
+            <p><i class="fab fa-instagram"></i> @regalexposures</p>
+            <p><i class="fas fa-envelope"></i> regalexposures@gmail.com</p>
+            <a href="https://forms.gle/your-google-form-link" target="_blank" class="enquiry-button">
+                <i class="fas fa-paper-plane"></i> Enquire Now
+            </a>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 Regal Exposures. All rights reserved.</p>
+        </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"
+    ></script>
+    <!-- AOS Animation JS -->
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"
+    ></script>
+    <script>
+        // Initialize AOS
+        AOS.init();
+
+        // Hero Slider Functionality
+        const slides = document.querySelectorAll('.slide');
+        const indicators = document.querySelectorAll('.slide-indicator');
+        let currentSlide = 0;
+
+        function showSlide(index) {
+        slides.forEach((slide, i) => {
+            slide.classList.toggle('active', i === index);
+            indicators[i].classList.toggle('active', i === index);
+        });
+        }
+
+        function nextSlide() {
+        currentSlide = (currentSlide + 1) % slides.length;
+        showSlide(currentSlide);
+        }
+
+        // Auto-slide every 5 seconds
+        let slideInterval = setInterval(nextSlide, 5000);
+
+        // Manual slide control
+        indicators.forEach((indicator, index) => {
+        indicator.addEventListener("click", () => {
+            clearInterval(slideInterval);
+            currentSlide = index;
+            showSlide(currentSlide);
+            slideInterval = setInterval(nextSlide, 5000);
+        });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener("scroll", () => {
+        const navbar = document.querySelector(".navbar");
+        if (window.scrollY > 50) {
+            navbar.style.backgroundColor = "#1a1a1a";
+            navbar.style.padding = "10px 0";
+        } else {
+            navbar.style.backgroundColor = "rgba(26, 26, 26, 0.95)";
+            navbar.style.padding = "15px 0";
+        }
+        });
+    </script>
+    </body>
+    </html>
